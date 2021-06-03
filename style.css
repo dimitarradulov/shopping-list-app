@@ -1,0 +1,201 @@
+/* GENERAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  background-image: linear-gradient(to right top, #ffd35c, #ecbd0c);
+  height: 100vh;
+  color: #332c1b;
+}
+
+/* LAYOUT */
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+.column-2 {
+  flex-basis: 50%;
+}
+
+/* UTILITY */
+.text-center {
+  text-align: center;
+}
+
+.mt-big {
+  margin-top: 6.5rem;
+}
+
+.mt-medium {
+  margin-top: 3.5rem;
+}
+
+.mr-small {
+  margin-right: 2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+/* MAIN */
+.main-header,
+.sub-header {
+  font-variant: small-caps;
+  font-weight: 700;
+}
+
+.main-header {
+  font-size: 6.4rem;
+  letter-spacing: 0.32rem;
+}
+
+.sub-header {
+  font-size: 3.2rem;
+  color: rgba(51, 44, 27, 0.9);
+  text-transform: lowercase;
+}
+
+#user-input,
+.btn {
+  height: 3.5rem;
+  border-radius: 5px;
+  border: none;
+}
+
+#user-input {
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.2);
+  opacity: 0.8;
+  padding: 0 2rem;
+}
+
+#user-input:focus {
+  outline: none;
+}
+
+#user-input::placeholder {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.btn {
+  background: #332c1b;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  background: #524b3b;
+}
+
+ul {
+  list-style: none;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  padding: 1rem 2rem;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+ul li:last-child {
+  margin: 0;
+}
+
+.remove-item {
+  cursor: pointer;
+  color: #e34c0a;
+}
+
+.btn-clear {
+  align-self: flex-end;
+  width: 23%;
+  margin-bottom: 1rem;
+}
+
+/* The Modal (background) */
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 2rem;
+  border: 1px solid #888;
+  border-radius: 3px;
+  width: 30%; /* Could be more or less, depending on screen size */
+  text-align: center;
+  font-weight: 500;
+}
+
+.yes-btn,
+.no-btn {
+  width: 12rem;
+  margin-top: 1.5rem;
+}
+
+.yes-btn {
+  background: #ecbd0c;
+}
+
+.yes-btn:hover {
+  background: #cca30a;
+}
+
+/* MEDIA QUERIES */
+@media only screen and (min-width: 320px) and (max-width: 665px) {
+  .main-header {
+    font-size: 4.5rem;
+  }
+
+  .sub-header {
+    font-size: 2.5rem;
+  }
+
+  .modal-content {
+    margin: 50% auto;
+    width: 80%;
+  }
+}
