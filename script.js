@@ -7,6 +7,7 @@ const modalYesBtn = document.querySelector('.yes-btn');
 const modalCancelBtn = document.querySelector('.no-btn');
 const clearBtn = document.querySelector('.btn-clear');
 const modalWarning = document.querySelector('.modal-warning');
+const shoppingList = document.querySelector('.shopping-list');
 let liArr = [];
 
 // Functions
@@ -14,76 +15,62 @@ function inputLength() {
   return input.value.length;
 }
 
-function createListElement() {
-  const li = document.createElement('li');
-  const deleteIcon = document.createElement('i');
-  deleteIcon.classList.add('remove-item');
-  deleteIcon.classList.add('fas', 'fa-minus-circle');
-  li.appendChild(document.createTextNode(input.value));
-  li.appendChild(deleteIcon);
-  ul.appendChild(li);
-  ul.classList.remove('hidden');
-  liArr.push(li);
-  for (let i = 0; i < liArr.length; i++) {
-    liArr[i].querySelector('i').addEventListener('click', function () {
-      modalReveal();
-      modalYesBtn.addEventListener('click', function () {
-        liArr[i].parentElement.removeChild(liArr[i]);
-        if (ul.textContent === '') {
-          ul.classList.add('hidden');
-        }
-        clearBtn.classList.add('hidden');
-        modalClose();
-      });
-    });
-  }
-  clearBtn.classList.remove('hidden');
+function createLiElement() {
+  ul.insertAdjacentHTML(
+    'beforeend',
+    `<li>${input.value}<i class="remove-item fas fa-minus-circle"></i></li>`
+  );
+
+  if (shoppingList.classList.contains('hidden'))
+    shoppingList.classList.remove('hidden');
+
   input.value = '';
 }
 
 function addListAfterClick() {
   if (inputLength() > 0) {
-    createListElement();
+    createLiElement();
   }
 }
 
-function addListAfterKeypress(event) {
-  if (inputLength() > 0 && event.keyCode === 13) {
-    createListElement();
+function addListAfterKeypress(e) {
+  if (inputLength() > 0 && e.keyCode === 13) {
+    createLiElement();
   }
 }
 
-function modalClose() {
-  modal.classList.add('hidden');
-  modalClear.classList.add('hidden');
-}
+// function modalClose() {
+//   modal.classList.add('hidden');
+// }
 
-function modalReveal() {
-  modal.classList.remove('hidden');
+// function modalReveal() {
+//   modal.classList.remove('hidden');
+// }
+
+function hideShoppingListSection() {
+  if (ul.innerHTML === '') shoppingList.classList.add('hidden');
 }
 
 // Events
 button.addEventListener('click', addListAfterClick);
-
 input.addEventListener('keydown', addListAfterKeypress);
 
-modalCancelBtn.addEventListener('click', modalClose);
-
-document.addEventListener('keydown', function (ev) {
-  if (ev.key === 'Escape' && !modal.classList.contains('hidden')) {
-    modalClose();
+ul.addEventListener('click', function (e) {
+  if (e.target.classList.contains('remove-item')) {
+    const clicked = e.target;
+    const li = clicked.closest('li');
+    li.remove();
+    hideShoppingListSection();
   }
 });
 
 clearBtn.addEventListener('click', function () {
-  modalWarning.textContent = 'Are you sure?';
-  modalYesBtn.textContent = 'Yes';
-  modalCancelBtn.textContent = 'No';
-  modalReveal();
-  modalYesBtn.addEventListener('click', function () {
-    ul.textContent = '';
-    ul.classList.add('hidden');
-    clearBtn.classList.add('hidden');
-    modalClose();
-  });
+  ul.querySelectorAll('li').forEach((li) => li.remove());
+  hideShoppingListSection();
 });
+
+// document.addEventListener('keydown', function (e) {
+//   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+//     modalClose();
+//   }
+// });
